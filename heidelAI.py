@@ -7,7 +7,6 @@ from models import UserModel
 
 app = FastAPI()
 
-# ---------- DB Dependency ----------
 def get_db():
     db = SessionLocal()
     try:
@@ -15,7 +14,6 @@ def get_db():
     finally:
         db.close()
 
-# ---------- Schemas ----------
 class User(BaseModel):
     id: int
     name: str
@@ -72,3 +70,4 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
     db.delete(user)
     db.commit()
     return {"message": "User deleted successfully"}
+
